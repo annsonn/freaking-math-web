@@ -13,7 +13,15 @@ angular.module('freakingMathWebApp')
     $scope.player = PlayerService.newPlayer();
     $scope.equation = MathService.makeEquation();
     $scope.timer = '100';
-    $scope.gameOn = true;
+    $scope.gameOver = false;
+    
+    $scope.topScore = 0;
+    
+    $scope.reset = function reset() {
+      $scope.player = PlayerService.newPlayer();
+      $scope.equation = MathService.makeEquation();
+      $scope.gameOver = false;
+    };
     
     $scope.validate = function validation(userAnswer) {
       if (userAnswer === $scope.equation.isAnswerCorrect) {
@@ -21,7 +29,10 @@ angular.module('freakingMathWebApp')
         $scope.equation = MathService.makeEquation();
       }
       else {
-        $scope.gameOn = false;
+        $scope.gameOver = true;
+        if ($scope.player.score > $scope.topScore) {
+          $scope.topScore = $scope.player.score;
+        }
       }
     };
     
