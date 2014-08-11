@@ -1,9 +1,11 @@
 <div class="jumbotron">  
   <p><small>Top Score: {{topScore}}</small></p>
   <small>Timer</small>
+  <!--
   <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="{{timer}}" aria-valuemin="0" aria-valuemax="100" style="width: {{timer}}%;"></div>
   </div>
+  -->
   <h1>{{equation.string}}?</h1>
   <p>
     <button class="btn btn-lg btn-success" ng-disabled="gameOver" ng-click="validate(true)"><span class="glyphicon glyphicon-ok"></span></button>
