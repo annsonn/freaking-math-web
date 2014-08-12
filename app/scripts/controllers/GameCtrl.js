@@ -8,45 +8,57 @@
  * Controller of the freakingMathWebApp
  */
 angular.module('freakingMathWebApp')
-  .controller('GameCtrl', function ($scope, $log, PlayerService, MathService) {   
+  .controller('GameCtrl', function ($scope, $log, $timeout, PlayerService, MathService) {   
     $log.log('GameCtrl!');
     $scope.player = PlayerService.newPlayer();
-    $scope.equation = MathService.makeEquation();
-    $scope.timer = '100';
+    $scope.equation = MathService.makeEquation();   
     $scope.gameOver = false;
-    
+        
     $scope.topScore = 0;      
     
     $scope.reset = function reset() {
       $scope.player = PlayerService.newPlayer();
       $scope.equation = MathService.makeEquation();
       $scope.gameOver = false;
-      $scope.startTimer();
+      resetCountdown();
     };
     
     $scope.validate = function validation(userAnswer) {
       if (userAnswer === $scope.equation.isAnswerCorrect) {
         $scope.player.score = $scope.player.score+1;
         $scope.equation = MathService.makeEquation();
-        $scope.$broadcast('timer-clear');
-        $scope.$broadcast('timer-start');
+        resetCountdown();
       }
       else {
-        $scope.gameOver = true;
-        $scope.$broadcast('timer-stop');
-        if ($scope.player.score > $scope.topScore) {
-          $scope.topScore = $scope.player.score;          
-        }
+        gameOver();
       }
     };
-    
-    $scope.startTimer = function (){
-      $scope.$broadcast('timer-start');
+       
+    $scope.counter = 0;
+    $scope.onTimeout = function(){
+        $scope.counter = $scope.counter + 15;
+        countdown = $timeout($scope.onTimeout,300);
     };
-    $scope.startTimer();
+    var countdown = $timeout($scope.onTimeout,300);
     
-    $scope.$on('timer-stopped', function (){
+    function resetCountdown(){
+      $scope.counter = 0;
+      $timeout.cancel(countdown);
+      countdown = $timeout($scope.onTimeout,300);
+    }
+    
+    function gameOver() {
       $scope.gameOver = true;
+      $timeout.cancel(countdown);
+      if ($scope.player.score > $scope.topScore) {
+        $scope.topScore = $scope.player.score;          
+      }
+    }
+    
+    $scope.$watch('counter', function(newValue) {
+      if(newValue === 100) {
+        gameOver();
+      }
     });
     
   });

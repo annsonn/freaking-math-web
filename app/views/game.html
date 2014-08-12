@@ -1,13 +1,16 @@
 <div class="jumbotron">  
-  <p><small>Top Score: {{topScore}}</small></p>
+  <h4>Top Score: {{topScore}}</h4>
   <small>Timer</small>
-  <timer interval="500"><div class="progress progress-striped active"> <div class="bar" style="width: {{seconds}}%;"></div> </div></timer>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{counter}}" aria-valuemin="0" aria-valuemax="100" style="width: {{100 - counter}}%;"></div>
+  </div>
+  
   <h1>{{equation.string}}?</h1>
   <p>
     <button class="btn btn-lg btn-success" ng-disabled="gameOver" ng-click="validate(true)"><span class="glyphicon glyphicon-ok"></span></button>
     <button class="btn btn-lg btn-danger" ng-disabled="gameOver" ng-click="validate(false)"><span class="glyphicon glyphicon-remove"></span></button>
   </p>
-  <small>Score: {{player.score}}</small>
+  <h3>Score: {{player.score}}</h3>
   
   <p ng-show="gameOver">
     <button class="btn btn-lg btn-success" ng-click="reset()">Play again?</button>
