@@ -55,7 +55,7 @@ angular.module('freakingMathWebApp')
     }
     
     $scope.$watch('counter', function(newValue) {
-      if(newValue === 100) {
+      if(newValue >= 100) {
         gameOver();
       }
     });
