@@ -34,16 +34,18 @@ angular.module('freakingMathWebApp')
     };
        
     $scope.counter = 0;
+    var increment  = 25;
+    var timeout = 300;
     $scope.onTimeout = function(){
-        $scope.counter = $scope.counter + 25;
-        countdown = $timeout($scope.onTimeout,300);
+        $scope.counter = $scope.counter + increment;
+        countdown = $timeout($scope.onTimeout,timeout);
     };
-    var countdown = $timeout($scope.onTimeout,300);
+    var countdown = $timeout($scope.onTimeout,timeout);
     
     function resetCountdown(){
       $scope.counter = 0;
       $timeout.cancel(countdown);
-      countdown = $timeout($scope.onTimeout,250);
+      countdown = $timeout($scope.onTimeout,timeout);
     }
     
     function gameOver() {
@@ -55,7 +57,7 @@ angular.module('freakingMathWebApp')
     }
     
     $scope.$watch('counter', function(newValue) {
-      if(newValue > 125) {
+      if(newValue > (100 + increment)) {
         gameOver();
       }
     });
