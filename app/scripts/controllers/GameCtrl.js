@@ -9,7 +9,7 @@
  */
 angular.module('freakingMathWebApp')
   .controller('GameCtrl', function ($scope, $log, $timeout, PlayerService, MathService) {   
-    $log.log('GameCtrl!');
+    //$log.log('GameCtrl!');
     $scope.player = PlayerService.newPlayer();
     $scope.equation = MathService.makeEquation();   
     $scope.gameOver = false;

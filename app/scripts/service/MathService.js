@@ -34,7 +34,7 @@ angular.module('freakingMathWebApp')
       equation.string = '';
       equation.string = equation.string.concat(equation.firstNumber, (equation.operation === 1) ? '+' : '-',equation.secondNumber,'=',equation.answer);
       
-      $log.log('makeEquation:', equation);
+      //$log.log('makeEquation:', equation);
       
       return equation;
     };

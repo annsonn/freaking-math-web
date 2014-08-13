@@ -12,7 +12,7 @@ angular.module('freakingMathWebApp')
     var service = {};
     
     service.newPlayer = function newPlayer() {
-      $log.log('newPlayer!');
+      //$log.log('newPlayer!');
       var result = {};
       result.score = 0;      
       return result; 
