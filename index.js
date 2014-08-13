@@ -1,16 +1,10 @@
 var app = require('express')();
 var logfmt = require("logfmt");
 var http = require('http').Server(app);
-
+var gzippo = require('gzippo');
+ 
 app.use(logfmt.requestLogger());
+app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 app.use(require('express').static(process.cwd() + '/dist'));
 
-app.get('/', function(req, res){
-  res.sendfile('/dist/index.html');
-});
-
-var port = Number(process.env.PORT || 8080);
-
-http.listen(port, function(){
-  console.log("Listening on " + port);
-});
+http.listen(process.env.PORT || 8080);
