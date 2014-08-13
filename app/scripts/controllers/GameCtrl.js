@@ -35,10 +35,10 @@ angular.module('freakingMathWebApp')
        
     $scope.counter = 0;
     $scope.onTimeout = function(){
-        $scope.counter = $scope.counter + 15;
-        countdown = $timeout($scope.onTimeout,250);
+        $scope.counter = $scope.counter + 25;
+        countdown = $timeout($scope.onTimeout,300);
     };
-    var countdown = $timeout($scope.onTimeout,250);
+    var countdown = $timeout($scope.onTimeout,300);
     
     function resetCountdown(){
       $scope.counter = 0;
@@ -55,7 +55,7 @@ angular.module('freakingMathWebApp')
     }
     
     $scope.$watch('counter', function(newValue) {
-      if(newValue >= 100) {
+      if(newValue > 125) {
         gameOver();
       }
     });
