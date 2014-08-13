@@ -37,14 +37,14 @@ angular.module('freakingMathWebApp')
     $scope.counter = 0;
     $scope.onTimeout = function(){
         $scope.counter = $scope.counter + 15;
-        countdown = $timeout($scope.onTimeout,300);
+        countdown = $timeout($scope.onTimeout,250);
     };
-    var countdown = $timeout($scope.onTimeout,300);
+    var countdown = $timeout($scope.onTimeout,250);
     
     function resetCountdown(){
       $scope.counter = 0;
       $timeout.cancel(countdown);
-      countdown = $timeout($scope.onTimeout,300);
+      countdown = $timeout($scope.onTimeout,250);
     }
     
     function gameOver() {
