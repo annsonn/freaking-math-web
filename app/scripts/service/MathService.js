@@ -9,7 +9,35 @@
  */
 angular.module('freakingMathWebApp')
   .service('MathService', function ($log) {   
+    
+    var operations = ['+', '-', 'x'];
+    
+    var difficultyLevels = {
+      easy: ['+'],
+      medium: ['+', '-'],
+      hard: ['+', '-', 'x']
+    };
+    
     var service = {};
+    
+    service.difficulty = difficultyLevels.medium;
+    
+    service.updateDifficulty = function(newDifficulty) {
+      service.difficulty = difficultyLevels[newDifficulty];
+    };
+    
+    var calculateAnswer = function calculateAnswer(firstNumber, operation, secondNumber) {
+      if (operation === 0) {
+        return firstNumber + secondNumber;
+      }
+      if (operation === 1) {
+        return firstNumber - secondNumber;
+      }
+      if (operation === 2) {
+        return firstNumber * secondNumber;
+      }
+      
+    };
     
     service.makeEquation = function() {
       var equation = {};
@@ -17,10 +45,10 @@ angular.module('freakingMathWebApp')
       // Left Side of Equation
       equation.firstNumber = Math.floor(Math.random()*10);
       equation.secondNumber =  Math.floor(Math.random()*10);
-      equation.operation =  Math.floor(Math.random()*2);
+      equation.operation =  Math.floor(Math.random()*service.difficulty.length);
       
-      // Right Side of Equation
-      equation.answer = (equation.operation === 1) ? equation.firstNumber+equation.secondNumber : equation.firstNumber-equation.secondNumber;
+      // Right Side of Equation      
+      equation.answer = calculateAnswer(equation.firstNumber, equation.operation, equation.secondNumber);
       equation.isAnswerCorrect = true;
 
       // Determine to show right or wrong answer
@@ -32,7 +60,7 @@ angular.module('freakingMathWebApp')
         equation.isAnswerCorrect = false;
       }
       equation.string = '';
-      equation.string = equation.string.concat(equation.firstNumber, (equation.operation === 1) ? '+' : '-',equation.secondNumber,'=',equation.answer);
+      equation.string = equation.string.concat(equation.firstNumber, operations[equation.operation],equation.secondNumber,'=',equation.answer);
       
       //$log.log('makeEquation:', equation);
       

@@ -10,7 +10,7 @@
  */
 angular
   .module('freakingMathWebApp', [
-    'ngRoute'
+    'ngRoute', 'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -21,6 +21,10 @@ angular
       .when('/game', {
         templateUrl: 'views/game.html',
         controller: 'GameCtrl'
+      })
+      .when('/menu', {
+        templateUrl: 'views/menu.html',
+        controller: 'MenuCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -1,6 +1,6 @@
 <div class="jumbotron">  
   <h4>Top Score: {{topScore}}</h4>
-  <small>Timer</small>
+  <small>Time</small>
   <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="{{counter}}" aria-valuemin="0" aria-valuemax="100" style="width: {{100 - counter}}%;"></div>
   </div>
@@ -16,4 +16,3 @@
     <button class="btn btn-lg btn-success" ng-click="reset()">Play again?</button>
   </p>
 </div>
-<div ng-include="'views/googleads.html'"></div>
