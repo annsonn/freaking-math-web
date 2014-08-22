@@ -8,15 +8,17 @@
  * Controller of the freakingMathWebApp
  */
 angular.module('freakingMathWebApp')
-  .controller('GameCtrl', function ($scope, $log, $route, $timeout, $rootScope, PlayerService, MathService) {   
+  .controller('GameCtrl', function ($scope, $log, $modal, $route, $timeout, $rootScope, PlayerService, MathService) {   
     //$log.log('GameCtrl!');
     $scope.player = PlayerService.newPlayer();
     $scope.equation = MathService.makeEquation();   
     $scope.gameOver = false;         
     
     if(!$rootScope.topScore) {
-      $rootScope.topScore = 0;
+      $rootScope.topScore = 0;      
     }
+    
+    $scope.topScore = $rootScope.topScore;
     
     $scope.reset = function reset() {
       $route.reload();
@@ -42,18 +44,28 @@ angular.module('freakingMathWebApp')
     };
     var countdown = $timeout($scope.onTimeout,timeout);
     
+    function gameOverModal() {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/gameOver.html',
+        controller: 'GameOverCtrl',
+        size: 'sm',
+        backdrop: 'static',
+        scope: $scope        
+      });
+    }
+   
     function resetCountdown(){
       $scope.counter = 0;
       $timeout.cancel(countdown);
       countdown = $timeout($scope.onTimeout,timeout);
     }
     
-    function gameOver() {
-      $scope.gameOver = true;
+    function gameOver() {      
       $timeout.cancel(countdown);
       if ($scope.player.score > $rootScope.topScore) {
-        $rootScope.topScore = $scope.player.score;          
+        $scope.topScore = $rootScope.topScore = $scope.player.score;          
       }
+      gameOverModal();
     }
     
     $scope.$watch('counter', function(newValue) {

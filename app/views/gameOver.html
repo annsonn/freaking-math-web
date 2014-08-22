@@ -1,6 +1,11 @@
+<div class="modal-header">
+  <h2>Game Over</h2>
+</div>
 <div class="modal-body">
-  <p><strong>Your Score</strong>: {{player.score}}</p>
-  <small><strong>Top Score</strong>: {{topScopre}}</p>
-  <button class="btn btn-lg btn-success" ng-click="reset()"><span class="glyphicon glyphicon-play"></button>
-  <button class="btn btn-lg btn-success" ng-click="reset()"><span class="glyphicon glyphicon-menu"></button>
+  <p class="text-center"><strong>Your Score</strong>: {{player.score}}</p>
+  <p class="text-center"><small><strong>Top Score</strong>: {{$root.topScore}}</small></p>
+  <p class="text-center">
+    <button class="btn btn-lg btn-success" ng-click="restart()"><span class="glyphicon glyphicon-play"></span></button>
+    <button class="btn btn-lg btn-success" ng-click="goToStart()"><span class="glyphicon glyphicon-align-justify"></span></button>
+  </p>
 </div>

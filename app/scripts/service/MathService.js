@@ -11,19 +11,18 @@ angular.module('freakingMathWebApp')
   .service('MathService', function ($log) {   
     
     var operations = ['+', '-', 'x'];
+    var service = {};
     
-    var difficultyLevels = {
+    service.difficultyLevels = {
       easy: ['+'],
       medium: ['+', '-'],
       hard: ['+', '-', 'x']
-    };
+    };   
     
-    var service = {};
-    
-    service.difficulty = difficultyLevels.medium;
+    service.difficulty = service.difficultyLevels.medium;
     
     service.updateDifficulty = function(newDifficulty) {
-      service.difficulty = difficultyLevels[newDifficulty];
+      service.difficulty = service.difficultyLevels[newDifficulty];
     };
     
     var calculateAnswer = function calculateAnswer(firstNumber, operation, secondNumber) {

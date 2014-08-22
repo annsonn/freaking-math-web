@@ -10,8 +10,8 @@
 angular.module('freakingMathWebApp')
   .controller('MainCtrl', function ($scope, $location, $log, MathService) {   
     $scope.equation = MathService.makeEquation();
-    $scope.startGame = function() {
+    $scope.goToMenu = function() {
       //$log.log('Start Game!');
-      $location.path('/game');
+      $location.path('/menu');
     };
   });
