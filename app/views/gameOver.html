@@ -3,7 +3,12 @@
 </div>
 <div class="modal-body">
   <h2 class="text-center"><strong>Your Score</strong>: {{player.score}}</h2>
-  <h3 class="text-center"><strong>Top Score</strong>: {{$root.topScore}}</h3>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="score in $root.topScores">
+      <span class="badge">{{score.score}}</span>
+      {{score.name}}
+    </li>
+  </ul>  
   <p class="text-center">
     <button class="btn btn-lg btn-success" ng-click="restart()"><span class="glyphicon glyphicon-play"></span></button>
     <button class="btn btn-lg btn-success" ng-click="goToStart()"><span class="glyphicon glyphicon-align-justify"></span></button>

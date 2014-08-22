@@ -8,17 +8,15 @@
  * Controller of the freakingMathWebApp
  */
 angular.module('freakingMathWebApp')
-  .controller('GameCtrl', function ($scope, $log, $modal, $route, $timeout, $rootScope, PlayerService, MathService) {   
+  .controller('GameCtrl', function ($scope, $log, $location, $modal, $route, $timeout, $rootScope, PlayerService, MathService) {   
     //$log.log('GameCtrl!');
     $scope.player = PlayerService.newPlayer();
     $scope.equation = MathService.makeEquation();   
     $scope.gameOver = false;         
     
-    if(!$rootScope.topScore) {
-      $rootScope.topScore = 0;      
-    }
-    
-    $scope.topScore = $rootScope.topScore;
+    if(!$rootScope.topScores) {
+      $location.path('/menu');
+    }    
     
     $scope.reset = function reset() {
       $route.reload();
@@ -61,9 +59,9 @@ angular.module('freakingMathWebApp')
     }
     
     function gameOver() {      
-      $timeout.cancel(countdown);
-      if ($scope.player.score > $rootScope.topScore) {
-        $scope.topScore = $rootScope.topScore = $scope.player.score;          
+      $timeout.cancel(countdown);      
+      if ($scope.player.score > $rootScope.topScores[$rootScope.currentDifficulty].score) {
+        $rootScope.topScores[$rootScope.currentDifficulty].score = $scope.player.score;          
       }
       gameOverModal();
     }

@@ -14,12 +14,12 @@ angular.module('freakingMathWebApp')
     var service = {};
     
     service.difficultyLevels = {
-      easy: ['+'],
-      medium: ['+', '-'],
-      hard: ['+', '-', 'x']
+      Easy: ['+'],
+      Medium: ['+', '-'],
+      Hard: ['+', '-', 'x']
     };   
     
-    service.difficulty = service.difficultyLevels.medium;
+    service.difficulty = service.difficultyLevels.Medium;
     
     service.updateDifficulty = function(newDifficulty) {
       service.difficulty = service.difficultyLevels[newDifficulty];
