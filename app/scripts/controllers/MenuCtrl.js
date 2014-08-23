@@ -14,21 +14,7 @@ angular.module('freakingMathWebApp')
     $scope.startGame = function() {
       //$log.log('Start Game!');
       MathService.updateDifficulty($scope.difficulty);
-      $rootScope.currentDifficulty = $scope.difficulty;
-      $rootScope.topScores = {
-        Easy: {
-          name: 'Easy',
-          score: 0
-        },
-        Medium: {
-          name: 'Medium',
-          score: 0
-        },
-        Hard: {
-          name: 'Hard',
-          score: 0
-        }
-      };
+      $rootScope.currentDifficulty = $scope.difficulty;      
       $location.path('/game');
     };
   });

@@ -12,11 +12,13 @@ angular.module('freakingMathWebApp')
     //$log.log('GameCtrl!');
     $scope.player = PlayerService.newPlayer();
     $scope.equation = MathService.makeEquation();   
-    $scope.gameOver = false;         
+    $scope.gameOver = false;                 
     
     if(!$rootScope.topScores) {
-      $location.path('/menu');
+      $location.path('/');
     }    
+    
+    $scope.topScore = $rootScope.topScores[$rootScope.currentDifficulty];
     
     $scope.reset = function reset() {
       $route.reload();
